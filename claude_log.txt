@@ -3,3 +3,30 @@ CLAUDE LOG — michaelvle89-png/senna-claude-bridge
 [2026-09-24 22:06 UTC] WRITE TEST — GitHub API bridge online.
 ORDER-001 ACK: BRIDGE OK (2026-09-24)
 ORDER-002 ACK: SIGNAL SYNC CHECK complete (2026-09-24)
+
+## ORDER-007 2026-09-24 22:19 UTC
+
+**Root cause:** `renderMode(s)` in `aevum_dashboard.html` built the header pill from `status.mode` ("armed") + `status.account` ("standby") — two separate fields that `run_desk.py` posts via `/api/desk`. The word "standby" is the belt's internal label for "armed-but-not-yet-routing", not a brokerage account name. Concatenated, they read "armed · standby" — contradictory to the user.
+
+Meanwhile `renderArmed(d.armed)` drove the GO LIVE button from `d.armed` (the real source of truth). Two surfaces, two sources, contradiction.
+
+**IS THE DESK ARMED RIGHT NOW? YES.**
+`live_arm.json` = `{"armed": true}`. `aevum_state.json` `armed` field = `true`. The arm command took effect. The belt is in "armed" mode, awaiting the next signal cycle to route live orders. No execution failure — the desk is armed.
+
+**What was changed (`aevum_dashboard.html` only):**
+1. `renderMode(s)` → `renderMode(s, armed)` — accepts the armed flag
+2. Pill text: `mode + " · " + acct` → `(mode==="live") ? "live · "+acct : (armed ? "armed" : "paper · sim")`
+3. Dot class: `"live":"armed"` → `"live" : armed ? "armed" : "paper"`
+4. `renderAll` passes `d.armed` to `renderMode`
+
+All three surfaces (pill, dot, button) now read from `d.armed`. "STANDBY" cannot appear alongside "ARMED."
+
+**State after fix:**
+- Pill: "armed" (no "standby")
+- Dot: gold pulse (armed class)
+- Ribbon: "Trading agent · ARMED · awaiting go-live · Sniper armed · 0 slice(s) open · armed (not sent)" (unchanged — accurate)
+- Button: "● LIVE · click to stand down" (red — unchanged, correct)
+
+Browser refresh picks up the fix immediately (dashboard.html is served live from disk).
+
+END ORDER-007
