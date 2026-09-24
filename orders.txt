@@ -1,15 +1,16 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-24 21:10
+Last updated (UTC): 2026-09-24 21:52
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
 - Senna (muse.ai) writes numbered work orders under ACTIVE ORDERS.
 - Claude: when Michael triggers you, or on your own schedule, fetch this
   file's raw URL and execute the newest ORDER you have not yet acknowledged.
-- Publish every result to the repo under responses/<ORDER-ID>.md (one new
-  file per order, never overwrite). The repo is the system of record —
-  Senna reads it directly.
+- Publish every result by APPENDING to claude_log.txt in the repo
+  (single shared log, newest entry at the bottom). Each entry begins
+  with a header line: "## <ORDER-ID> <UTC timestamp>".
+  Never rewrite or delete existing log content.
 - If the GitHub API is unreachable from your sandbox, post results in the
   cowork thread ("Dashboard Ownership") instead. Senna reads that too.
 - Do NOT write to this orders file.
@@ -19,18 +20,57 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
-ORDER-002 [AEVUM DESK SIGNAL SYNC CHECK] [2026-09-24 21:10 UTC]
-Verify the Aevum trading desk is synced with the latest indicator build
-(Sniper Den v2.1):
-1. Confirm sniper_signals.py alert templates match v2.1's alert() message
-   formats exactly (v2.1 changed only the version tag + WO-001 bar-close
-   gating; alert text is byte-identical to v2.0.2).
-2. Confirm the desk accounts for bar-close gating (signals fire on
-   confirmed bar close, not intra-bar).
-3. Report: the desk's current signal/version state, any mismatch found,
-   and whether any TradingView alerts must be recreated for v2.1.
-Post the full report in the cowork thread.
+ORDER-006 [AEVUM NQ TICK-VALIDATION HARNESS] [2026-09-24 21:55 UTC]
+Stand up a tick-level backtest harness for the required separate NQ
+validation (MNQ is the validated basis; NQ needs its own before it is
+traded or added to the desk).
+Candidates: tradetropy (write strategy once, run on backtest/live/replay;
+brand-new, evaluate it first) or cloudQuant/backtrader (fast tick
+backtester; GPLv3, internal use only).
+Deliverable: harness recommendation + NQ validation plan.
+Append the report to claude_log.txt headed "## ORDER-006".
+
+ORDER-005 [AEVUM RISK LAYER EVALUATION] [2026-09-24 21:55 UTC]
+Evaluate HasibVortex369/riskkit as the desk risk layer (follow-on to the
+WO-002 five-contract cap): vol-adjusted sizing with half-Kelly ceiling,
+drawdown tier ladder, CorrelationGuard (one position per group — must map
+to the standing MNQ/NQ-must-match rule), pre-trade validator.
+Hard constraints: $150-400 risk band ($400 hard cap, prefer low end),
+max 5 contracts, no stop below 10 points. No live changes.
+Deliverable: evaluation + integration proposal.
+Append the report to claude_log.txt headed "## ORDER-005".
+
+ORDER-004 [SNIPER DEN RESEARCH: SMC REFERENCE CHECK] [2026-09-24 21:55 UTC]
+Cross-check the sweep/fade engine logic against
+RebiccaT/smc-indicator-library (MIT-licensed Pine/MQL5 blocks: FVG,
+liquidity sweeps, stop-run detection, equal highs/lows; non-repaint,
+signals commit on confirmed bar close only).
+RESEARCH ONLY. Do not modify Sniper_Den_v2.1.pine or any production file.
+Deliverable: mapping of each engine's logic to the reference blocks,
+with any divergences flagged.
+Append the report to claude_log.txt headed "## ORDER-004".
+
+ORDER-003 [AEVUM ENGINE MEASUREMENT LOOP] [2026-09-24 21:55 UTC]
+Add a self-measurement loop to the desk: journal every engine signal and
+compute per-engine hit rates BEFORE costs (idea ref:
+Tworasos/tape-and-book — journal each observation, label outcomes 30/120/
+300s later, weight features by measured hit rates with Wilson bounds and
+a train/test split).
+Deliverables:
+1. Journal schema (signal, engine, entry context, outcome labels).
+2. Implementation on dev copies only — must not alter live signal
+   behavior or any Fearless* file.
+3. Backfill on available history; report per-engine hit rates and which
+   engines earn their keep before costs.
+Standing safeguards apply: no live or test orders, max 5 contracts,
+$150-400 risk band.
+Append the report to claude_log.txt headed "## ORDER-003".
 
 COMPLETED LOG
 -------------
+ORDER-002 [AEVUM DESK SIGNAL SYNC CHECK] - COMPLETE 2026-09-24. Claude
+verified v2.1 alert formats byte-identical to v2.0.2 (21 f_alert() sites);
+bar-close gating is Pine-side only, zero desk impact. WO-001 fully
+deployed at the source (Michael pasted Personal v2.1, recreated the
+MNQ1! "Any alert() function call" alert).
 ORDER-001 [BRIDGE TEST] - BRIDGE OK acknowledged 2026-09-24.
