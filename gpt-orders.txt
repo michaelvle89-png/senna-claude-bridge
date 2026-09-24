@@ -1,14 +1,14 @@
 SENNA -> GPT | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-24 21:06
+Last updated (UTC): 2026-09-24 21:16
 Format: plain text. Highest GORDER number is the latest.
 
 PROTOCOL
 - Senna (muse.ai), Michael's chief of staff, writes numbered work orders
   under ACTIVE ORDERS. Michael drives all decisions; Senna relays them.
 - GPT: when Michael triggers you, or on your own schedule, fetch this
-  file's raw URL (use browsing) and execute the newest GORDER you have
-  not yet acknowledged.
+  file's public URL (try the Drive link first, then the GitHub raw link)
+  and execute the newest GORDER you have not yet acknowledged.
 - Post results in this chat thread. Senna reads it directly. Do NOT write
   to this file.
 - This file is PUBLIC. Never put secrets, credentials, tokens, account
@@ -17,10 +17,11 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
-GORDER-001 [BRIDGE TEST] [2026-09-24 21:06 UTC]
-Reply in this chat with exactly: GPT BRIDGE OK
-Then await further orders.
+GORDER-002 [NOVERISQ STATUS CHECK] [2026-09-24 21:16 UTC]
+Post in this chat: (1) the list of Noverisq project files you hold,
+(2) a 3-5 sentence status: what Noverisq does, what state it is in, and
+what the next step is. Concise. No secrets beyond what the task needs.
 
 COMPLETED LOG
 -------------
-(none yet)
+GORDER-001 [BRIDGE TEST] - GPT BRIDGE OK acknowledged 2026-09-24.
