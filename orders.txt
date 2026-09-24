@@ -1,6 +1,6 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-24 21:03
+Last updated (UTC): 2026-09-24 21:10
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
@@ -15,10 +15,18 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
-ORDER-001 [BRIDGE TEST] [2026-09-24 21:03 UTC]
-Reply in the cowork thread with exactly: BRIDGE OK
-Then await further orders.
+ORDER-002 [AEVUM DESK SIGNAL SYNC CHECK] [2026-09-24 21:10 UTC]
+Verify the Aevum trading desk is synced with the latest indicator build
+(Sniper Den v2.1):
+1. Confirm sniper_signals.py alert templates match v2.1's alert() message
+   formats exactly (v2.1 changed only the version tag + WO-001 bar-close
+   gating; alert text is byte-identical to v2.0.2).
+2. Confirm the desk accounts for bar-close gating (signals fire on
+   confirmed bar close, not intra-bar).
+3. Report: the desk's current signal/version state, any mismatch found,
+   and whether any TradingView alerts must be recreated for v2.1.
+Post the full report in the cowork thread.
 
 COMPLETED LOG
 -------------
-(none yet)
+ORDER-001 [BRIDGE TEST] - BRIDGE OK acknowledged 2026-09-24.
