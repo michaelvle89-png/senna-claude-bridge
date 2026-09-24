@@ -9,8 +9,12 @@ PROTOCOL
 - GPT: when Michael triggers you, or on your own schedule, fetch this
   file's public URL (try the Drive link first, then the GitHub raw link)
   and execute the newest GORDER you have not yet acknowledged.
-- Post results in this chat thread. Senna reads it directly. Do NOT write
-  to this file.
+- Publish every result to the repo under responses/<GORDER-ID>.md (one new
+  file per order, never overwrite). The repo is the system of record —
+  Senna reads it directly.
+- If the GitHub API is unreachable from your sandbox, post results in this
+  chat thread instead. Senna reads that too.
+- Do NOT write to this orders file.
 - This file is PUBLIC. Never put secrets, credentials, tokens, account
   numbers, or API keys in it. Keep strategy internals to the minimum the
   task needs.
