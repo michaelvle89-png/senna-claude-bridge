@@ -1,6 +1,6 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-24 21:52
+Last updated (UTC): 2026-09-24 22:11
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
@@ -20,6 +20,25 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
+ORDER-007 [AEVUM DASHBOARD STATE BUG: ARMED vs STANDBY] [2026-09-24 22:11 UTC]
+URGENT — Michael is furious. He ARMED the desk, but the AEVUM Futures
+dashboard still shows STANDBY. His question, verbatim: "is it fucking
+armed or not?"
+The bug: the dashboard renders contradictory states at the same time —
+the header pill reads "ARMED · STANDBY", the desk state line reads
+"ARMED · awaiting go-live" / "armed (not sent)", and a red
+"LIVE - click to stand down" button is displayed. Arming did not clear
+STANDBY.
+Required:
+1. Find the single source of truth for desk state and make EVERY surface
+   (header pill, desk state line, LIVE/stand-down button) render exactly
+   one consistent state. ARMED and STANDBY must never appear together.
+2. Answer definitively: is the desk armed RIGHT NOW — yes or no. If the
+   arm command did not take effect, say so and explain why.
+3. Fix the underlying state bug, not just the label.
+Append the report to claude_log.txt headed "## ORDER-007": root cause,
+what you changed, and the definitive armed/not-armed answer.
+
 ORDER-006 [AEVUM NQ TICK-VALIDATION HARNESS] [2026-09-24 21:55 UTC]
 Stand up a tick-level backtest harness for the required separate NQ
 validation (MNQ is the validated basis; NQ needs its own before it is
