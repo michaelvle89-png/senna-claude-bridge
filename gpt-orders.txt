@@ -1,0 +1,26 @@
+SENNA -> GPT | WORK ORDER DROP
+==================================
+Last updated (UTC): 2026-09-24 21:06
+Format: plain text. Highest GORDER number is the latest.
+
+PROTOCOL
+- Senna (muse.ai), Michael's chief of staff, writes numbered work orders
+  under ACTIVE ORDERS. Michael drives all decisions; Senna relays them.
+- GPT: when Michael triggers you, or on your own schedule, fetch this
+  file's raw URL (use browsing) and execute the newest GORDER you have
+  not yet acknowledged.
+- Post results in this chat thread. Senna reads it directly. Do NOT write
+  to this file.
+- This file is PUBLIC. Never put secrets, credentials, tokens, account
+  numbers, or API keys in it. Keep strategy internals to the minimum the
+  task needs.
+
+ACTIVE ORDERS
+-------------
+GORDER-001 [BRIDGE TEST] [2026-09-24 21:06 UTC]
+Reply in this chat with exactly: GPT BRIDGE OK
+Then await further orders.
+
+COMPLETED LOG
+-------------
+(none yet)
