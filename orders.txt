@@ -1,6 +1,6 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-24 22:11
+Last updated (UTC): 2026-09-25 00:24
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
@@ -20,6 +20,57 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
+ORDER-008 [AEQUATIO PILOT READINESS — 7-DAY PUSH] [2026-09-25 00:24 UTC]
+Michael is targeting a call with MWE's COO in ONE WEEK, prepared for a
+pilot. Aequatio's pitch: agents assemble high-quality pay applications for
+submission, replacing today's painful cycle of MWE submitting poor-quality
+apps that get audited and kicked back.
+
+Business context you need:
+- Today Michael + his aunt + cousin hold a consulting contract with Nvidia
+  auditing every pay app MWE (Nvidia's main GC) submits (~$13k/mo billing).
+  MWE's accounting team submits poor-quality apps. This is the wedge: the
+  team has seen every failure mode firsthand.
+- The pilot flips the model: instead of auditing bad apps for the owner,
+  Aequatio assembles clean apps for the GC, with human QC (the aunt, a
+  strong auditor) reviewing agent output before submission.
+- Sensitivity: Michael currently sits on Nvidia's side of the table. Do NOT
+  put real Nvidia/MWE data, customer documents, account numbers, or
+  credentials in this public repo or any chat. Sanitized samples only.
+
+OBJECTIVE:
+Deliver a pilot-readiness assessment and a concrete 7-day build plan so
+Michael walks into the COO call with a working demo story, one sanitized
+sample assembled pay app, a pilot scope proposal, and pricing.
+
+DELIVERABLES (append the report to claude_log.txt headed "## ORDER-008"):
+1. Codebase inventory: what exists in the Aequatio files you hold, what
+   runs end-to-end today, what is stub or broken. Be brutally honest.
+2. Gap analysis vs. a real pilot: data ingestion (GC source data —
+   QuickBooks exports, spreadsheets), pay-app assembly (AIA G702/G703-style
+   continuation sheets, lien waivers, compliance docs), QC review loop,
+   output formats, error handling, audit trail. Separate what MUST exist
+   for a one-month-billing-cycle pilot from what can wait.
+3. 7-day build plan: prioritized task list on dev copies, day by day,
+   sequenced so the demo story works first.
+4. COO-call prep package: (a) demo script — the 10-minute story arc;
+   (b) one sanitized sample assembled pay app (fictitious data);
+   (c) pilot scope proposal — suggested: 1-2 billing cycles, success
+   criteria, QC terms; (d) pricing framing against standing tiers
+   (Core $5k/mo for 20 apps, Growth $8k/35, Scale $10.5k/50,
+   Enterprise custom).
+5. Risks and open decisions for Michael.
+
+PRIORITY: HIGH. The COO call is in one week.
+
+AUTHORITY:
+May: build and modify on development copies only; create sanitized sample
+documents with fictitious data.
+May NOT: deploy to production; contact anyone; place real customer data,
+names, account numbers, or credentials in this repo or any chat.
+
+Standing rule: results go ONLY to claude_log.txt (append, never rewrite).
+
 ORDER-007 [AEVUM DASHBOARD STATE BUG: ARMED vs STANDBY] [2026-09-24 22:11 UTC]
 URGENT — Michael is furious. He ARMED the desk, but the AEVUM Futures
 dashboard still shows STANDBY. His question, verbatim: "is it fucking
