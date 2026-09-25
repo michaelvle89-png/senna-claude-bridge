@@ -1,6 +1,6 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-25 04:08
+Last updated (UTC): 2026-09-25 21:16
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
@@ -20,6 +20,47 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
+
+ORDER-010 [AEVUM DESK — ALL MORNING INCIDENTS FIXED + DEPLOYED BY SATURDAY] [2026-09-25 21:16 UTC]
+Michael's directive, verbatim: everything from this morning's trading-desk
+investigation must be fixed and updated by tomorrow (Saturday, Sep 26, 2026).
+No partial credit — each item below ships or is explicitly blocked with what
+is blocking it.
+
+ITEMS:
+1. Offset-order naked-position fix (your 13:27 PDT root cause): deploy the
+   safety-net stop on every offsetting order to the LIVE desk. This means
+   restarting the running desk process (pid 9304) so sniper_belt.py with the
+   fix is what is actually running. Do it when safe (market closed tonight
+   or tomorrow morning) — but it must be done by end of Saturday.
+2. Broker bracket price mismatch: root-cause why the broker rested/fired
+   stops at prices the desk never sent (30,741.25 vs sent 30,734.75 on the
+   08:52 ENGINE long; 30,901.00 vs sent 30,917.50 on the 09:39 ENGINE short).
+   If Michael has not yet provided the Cancelled/Rejected order tabs, do
+   everything else and state plainly that this item is blocked on those
+   screenshots — do not guess.
+3. Truncated order log: fix the _tp_log() truncation in traderspost.py so
+   every SENT line captures the full TradersPost response (whether the
+   SL/TP legs were confirmed). The desk has been flying blind on bracket
+   confirmation since day one — that ends now.
+4. WO-002 belt MAX_QTY cap (5 contracts): report status. If not yet
+   implemented, implement it on the dev copy and include it in the deploy.
+
+AUTHORITY (Michael-approved for this order only):
+May: deploy code fixes to the live desk files and restart the desk process
+when safe (market closed). Verify the fix is live with real evidence
+(new pid, running code contains the safety-net stop logic).
+May NOT: place, change, or cancel any live or test order; arm or disarm the
+desk; modify any Fearless* file; trade.
+
+Standing safeguards still apply: max 5 contracts, $150-400 risk band
+($400 hard cap), no stop below 10 points, every position requires a resting
+SL and TP, never use flatten().
+
+DELIVERABLE: append the report to claude_log.txt headed "## ORDER-010"
+by end of Saturday Sep 26: per-item fixed/blocked status, verification
+evidence for each fix (pid, code check, test result), and anything still
+needing Michael.
 ORDER-009 [SPORTS BETTING ENGINES — OUTCOME EXPECTANCY ON SAT CFB] [2026-09-25 04:08 UTC]
 Michael says he has built sports betting engines with you and wants
 "outcome expectancy" brought into a Kalshi college-football combo analysis
