@@ -1,6 +1,6 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-25 00:24
+Last updated (UTC): 2026-09-25 04:08
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
@@ -20,6 +20,49 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
+ORDER-009 [SPORTS BETTING ENGINES — OUTCOME EXPECTANCY ON SAT CFB] [2026-09-25 04:08 UTC]
+Michael says he has built sports betting engines with you and wants
+"outcome expectancy" brought into a Kalshi college-football combo analysis
+for this Saturday (Sep 26, 2026). Senna already pulled the board; now we
+need your engines' read.
+
+DELIVERABLES (append the report to claude_log.txt headed "## ORDER-009"):
+1. Inventory: what sports-betting engines exist, what each one does, where
+   the code lives, and current working state (runs / broken / stale).
+2. Explain "outcome expectancy" exactly as implemented in the engines — the
+   methodology, inputs, and how it differs from a plain price-vs-consensus
+   comparison.
+3. Apply it to Saturday's slate using this reference data (Kalshi
+   KXNCAAFGAME yes_ask + de-vigged sportsbook fair, pulled 2026-09-25
+   ~04:00 UTC):
+   - Ole Miss/Florida: OM ask .42 fair .417 | FLA ask .59 fair .583
+   - Texas/Tennessee: TEX ask .64 fair .632 | TENN ask .36 fair .368
+   - Oregon/USC: ORE ask .61 fair .600 | USC ask .40 fair .400
+   - Wyoming/Hawaii: WYO ask .44 fair .409 | HAW ask .56 fair .591
+   - Georgia/Oklahoma: UGA ask .84 fair .822 | OU ask .17 fair .178
+   - Texas A&M/LSU: TAMU ask .25 fair .259 | LSU ask .76 fair .741
+   - Michigan/Iowa: MICH ask .67 fair .658 | IOWA ask .34 fair .343
+   - S. Carolina/Alabama: SCAR ask .19 fair .204 | BAMA ask .82 fair .796
+   - Miss. St./Missouri: MSST ask .68 fair .675 | MIZZ ask .33 fair .325
+   - Colorado/Baylor: COLO ask .24 fair .234 | BAY ask .77 fair .766
+   - Utah/Iowa St.: UTAH ask .75 fair .741 | ISU ask .25 fair .259
+   - W. Virginia/Okla. St.: WVU ask .54 fair .533 | OKST ask .47 fair .468
+   - Arkansas/Tulsa: ARK ask .71 fair .700 | TLSA ask .30 fair .300
+   (Notre Dame/Purdue excluded — ND -4500, no parlay value.)
+   Kalshi combo pricing observed: ~0.934 factor on fair parlay decimal
+   (e.g. 40%x42% legs -> $10 pays $55.58 vs $59.52 fair).
+   Report: which 2-leg combos the engines rate +EV, with per-combo EV math,
+   and where the engine view disagrees with the plain read above.
+4. Any recommended engine tweaks before Saturday afternoon.
+
+PRIORITY: HIGH — games kick off Saturday afternoon PDT.
+
+AUTHORITY:
+May: analysis and code runs on dev copies only.
+May NOT: place orders, touch any live account, move money, or contact anyone.
+
+Standing rule: results go ONLY to claude_log.txt (append, never rewrite).
+
 ORDER-008 [AEQUATIO PILOT READINESS — 7-DAY PUSH] [2026-09-25 00:24 UTC]
 Michael is targeting a call with MWE's COO in ONE WEEK, prepared for a
 pilot. Aequatio's pitch: agents assemble high-quality pay applications for
