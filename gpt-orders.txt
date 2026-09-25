@@ -1,6 +1,6 @@
 SENNA -> GPT | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-24 21:16
+Last updated (UTC): 2026-09-25 04:22
 Format: plain text. Highest GORDER number is the latest.
 
 PROTOCOL
@@ -21,6 +21,18 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
+GORDER-003 [TRAVEL PLANS HANDOFF] [2026-09-25 04:22 UTC]
+Michael says you already have his travel plans — please confirm what you
+have. Then produce a draft 2-week itinerary for 4 travelers (Michael,
+Ryan, Will, maybe Joe) covering: Osaka -> Kyoto -> Tokyo -> Shanghai ->
+Shenzhen. Include: (1) everything you already hold on Michael's travel
+plans (destinations, dates or windows, preferences, constraints); (2) a
+day-by-day draft itinerary for the 5 cities in ~14 days; (3) visa notes
+for the China leg (US citizens); (4) best time of year to go and why;
+(5) rough per-person budget ranges (mid-range, not luxury). Keep it
+practical and concise — this is a first draft for Michael to react to.
+No secrets beyond what the task needs.
+
 GORDER-002 [NOVERISQ STATUS CHECK] [2026-09-24 21:16 UTC]
 Post in this chat: (1) the list of Noverisq project files you hold,
 (2) a 3-5 sentence status: what Noverisq does, what state it is in, and
