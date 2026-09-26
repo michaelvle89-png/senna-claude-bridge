@@ -1,6 +1,6 @@
 SENNA -> CLAUDE | WORK ORDER DROP
 ==================================
-Last updated (UTC): 2026-09-25 21:16
+Last updated (UTC): 2026-09-26 22:10
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
@@ -20,6 +20,44 @@ PROTOCOL
 
 ACTIVE ORDERS
 -------------
+
+ORDER-011 [MNQ FUTURES STRATEGY -> CRYPTO CONVERSION] [2026-09-26 22:10 UTC]
+Michael's directive, verbatim: "since it's developed a scalping bot already
+for Crypto, I'd like it to convert the MNQ futures strategy into one that
+works for crypto with the same functions with signals."
+
+Mission: take the MNQ futures strategy (the desk's signal engines, entry
+logic, SL/TP management, and risk guards) and produce a crypto version that
+mirrors it function-for-function with identical signal behavior.
+
+Required:
+1. Start from your existing crypto scalping bot files (the five core files
+   you already built). Build the conversion as NEW crypto strategy files —
+   do not modify the live futures desk files, do not modify any Fearless*
+   file, do not touch production.
+2. Same functions: keep the same function names, structure, and signal
+   engines as the MNQ strategy. Same signals: identical entry/exit signal
+   logic and triggers.
+3. Adapt only what futures-vs-crypto mechanics force you to change, and
+   document each adaptation explicitly:
+   - quantity sizing in crypto units (not contracts)
+   - stop/TP distances in price or percentage terms (MNQ point-based stops
+     must be translated, not dropped)
+   - 24/7 market handling (no session-based assumptions from futures)
+   - the safety-net stop and 5-contract-equivalent MAX_QTY cap carried over
+     in crypto terms
+4. Standing safeguards apply: no live or test orders, no deploying to any
+   live bot, $150-400 risk band ($400 hard cap), every position requires a
+   resting SL and TP.
+5. Deliverable: the new crypto strategy file(s) plus a conversion map
+   (function-by-function: MNQ version -> crypto version, what changed and
+   why). Append the report to claude_log.txt headed "## ORDER-011".
+
+AUTHORITY (Michael-approved for this order only):
+May: write new dev-copy crypto strategy files.
+May NOT: place any live or test order, deploy or restart any live bot,
+modify Fearless* or any live futures desk file, put keys/credentials
+anywhere.
 
 ORDER-010 [AEVUM DESK — ALL MORNING INCIDENTS FIXED + DEPLOYED BY SATURDAY] [2026-09-25 21:16 UTC]
 Michael's directive, verbatim: everything from this morning's trading-desk
