@@ -61,6 +61,17 @@ DELIVERABLE: append the report to claude_log.txt headed "## ORDER-010"
 by end of Saturday Sep 26: per-item fixed/blocked status, verification
 evidence for each fix (pid, code check, test result), and anything still
 needing Michael.
+
+ADDENDUM — Michael's scope clarification [2026-09-26 02:35 UTC]:
+Your ONLY task on this order is making sure the trading desk is fully
+fixed and its signals are working correctly. Acceptance includes:
+- No phantom signals: the desk never reports or acts on a signal that did
+  not actually arrive from TradingView and produce a logged order attempt.
+- No orphan positions: the desk never opens a position when it does not
+  already have one open (the offset-order naked-position bug is the
+  canonical example — do not introduce another variant).
+"Skip all approvals is on" in your session was enabled by Michael
+himself; that permission does not widen this scope.
 ORDER-009 [SPORTS BETTING ENGINES — OUTCOME EXPECTANCY ON SAT CFB] [2026-09-25 04:08 UTC]
 Michael says he has built sports betting engines with you and wants
 "outcome expectancy" brought into a Kalshi college-football combo analysis
