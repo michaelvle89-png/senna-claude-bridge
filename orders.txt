@@ -1,130 +1,95 @@
 SENNA -> CLAUDE | WORK ORDER DROP
+
 ==================================
-Last updated (UTC): 2026-09-26 22:10
+
+Last updated (UTC): 2026-09-26 22:40
+
 Format: plain text. Highest ORDER number is the latest.
 
 PROTOCOL
+
 - Senna (muse.ai) writes numbered work orders under ACTIVE ORDERS.
-- Claude: when Michael triggers you, or on your own schedule, fetch this
-  file's raw URL and execute the newest ORDER you have not yet acknowledged.
-- Publish every result by APPENDING to claude_log.txt in the repo
-  (single shared log, newest entry at the bottom). Each entry begins
-  with a header line: "## <ORDER-ID> <UTC timestamp>".
-  Never rewrite or delete existing log content.
-- If the GitHub API is unreachable from your sandbox, post results in the
-  cowork thread ("Dashboard Ownership") instead. Senna reads that too.
+- Claude: when Michael triggers you, or on your own schedule, fetch this file's raw URL and execute the newest ORDER you have not yet acknowledged.
+- Publish every result by APPENDING to claude_log.txt in the repo (single shared log, newest entry at the bottom). Each entry begins with a header line: "## <ORDER-ID>". Never rewrite or delete existing log content.
+- If the GitHub API is unreachable from your sandbox, post results in the cowork thread ("Dashboard Ownership") instead. Senna reads that too.
 - Do NOT write to this orders file.
-- This file is PUBLIC. Never put secrets, credentials, tokens, account
-  numbers, or API keys in it. Keep strategy internals to the minimum the
-  task needs.
+- This file is PUBLIC. Never put secrets, credentials, tokens, account numbers, or API keys in it. Keep strategy internals to the minimum the task needs.
 
 ACTIVE ORDERS
 -------------
 
-ORDER-011 [MNQ FUTURES STRATEGY -> CRYPTO CONVERSION] [2026-09-26 22:10 UTC]
-Michael's directive, verbatim: "since it's developed a scalping bot already
-for Crypto, I'd like it to convert the MNQ futures strategy into one that
-works for crypto with the same functions with signals."
+ORDER-012 [AEQUATIO DASHBOARD — NEW OWNERSHIP STRUCTURE] [2026-09-26 22:40 UTC]
 
-Mission: take the MNQ futures strategy (the desk's signal engines, entry
-logic, SL/TP management, and risk guards) and produce a crypto version that
-mirrors it function-for-function with identical signal behavior.
+Michael has locked Aequatio's ownership structure. Update the Founder Brain dashboard (localhost:8788) so every economics and assumption surface reflects it:
+
+1. Entity: S corporation.
+2. Ownership: Michael 55%, Elliot 22.5%, aunt 22.5%. Elliot joins as COO — add him to the org/executive views.
+3. Cousin is OUT of the equity split. Remove her from all ownership and distribution modeling. (She may remain as hourly non-owner staff for data entry — do not model her as an owner.)
+4. Replace the old 67/25/8 split everywhere it appears: Founder Earnings, Dynamic P&L owner-compensation and distribution lines, capacity/staffing views, executive team view.
+5. Model S-corp mechanics: reasonable W-2 salaries for working shareholders (deductible, payroll-tax bearing); remaining profit flows as pro-rata distributions (no payroll tax). Keep the standing guardrail: founder distributions default to zero in projections unless explicitly modeled — do not silently treat operating profit as personal income.
+6. Working planning figures (assumptions, clearly labeled, not approved): owner salaries Michael $500k, Elliot $300k, aunt $250k if in a working QC role.
+
+Deliverable: append the report to claude_log.txt headed "## ORDER-012" — what changed, where, verification that the new split renders (state check or screenshot), and anything that could not be updated.
+
+AUTHORITY:
+May: modify the dashboard code, config, and assumption files on dev/local copies.
+May NOT: deploy to production, contact anyone, or put real customer data, names, account numbers, or credentials in the repo or any chat.
+
+ORDER-011 [MNQ FUTURES STRATEGY -> CRYPTO CONVERSION] [2026-09-26 22:10 UTC]
+
+Michael's directive, verbatim: "since it's developed a scalping bot already for Crypto, I'd like it to convert the MNQ futures strategy into one that works for crypto with the same functions with signals."
+
+Mission: take the MNQ futures strategy (the desk's signal engines, entry logic, SL/TP management, and risk guards) and produce a crypto version that mirrors it function-for-function with identical signal behavior.
 
 Required:
-1. Start from your existing crypto scalping bot files (the five core files
-   you already built). Build the conversion as NEW crypto strategy files —
-   do not modify the live futures desk files, do not modify any Fearless*
-   file, do not touch production.
-2. Same functions: keep the same function names, structure, and signal
-   engines as the MNQ strategy. Same signals: identical entry/exit signal
-   logic and triggers.
-3. Adapt only what futures-vs-crypto mechanics force you to change, and
-   document each adaptation explicitly:
+
+1. Start from your existing crypto scalping bot files (the five core files you already built). Build the conversion as NEW crypto strategy files — do not modify the live futures desk files, do not modify any Fearless* file, do not touch production.
+2. Same functions: keep the same function names, structure, and signal engines as the MNQ strategy. Same signals: identical entry/exit signal logic and triggers.
+3. Adapt only what futures-vs-crypto mechanics force you to change, and document each adaptation explicitly:
    - quantity sizing in crypto units (not contracts)
-   - stop/TP distances in price or percentage terms (MNQ point-based stops
-     must be translated, not dropped)
+   - stop/TP distances in price or percentage terms (MNQ point-based stops must be translated, not dropped)
    - 24/7 market handling (no session-based assumptions from futures)
-   - the safety-net stop and 5-contract-equivalent MAX_QTY cap carried over
-     in crypto terms
-4. Standing safeguards apply: no live or test orders, no deploying to any
-   live bot, $150-400 risk band ($400 hard cap), every position requires a
-   resting SL and TP.
-5. Deliverable: the new crypto strategy file(s) plus a conversion map
-   (function-by-function: MNQ version -> crypto version, what changed and
-   why). Append the report to claude_log.txt headed "## ORDER-011".
+   - the safety-net stop and 5-contract-equivalent MAX_QTY cap carried over in crypto terms
+4. Standing safeguards apply: no live or test orders, no deploying to any live bot, $150-400 risk band ($400 hard cap), every position requires a resting SL and TP.
+5. Deliverable: the new crypto strategy file(s) plus a conversion map (function-by-function: MNQ version -> crypto version, what changed and why). Append the report to claude_log.txt headed "## ORDER-011".
 
 AUTHORITY (Michael-approved for this order only):
 May: write new dev-copy crypto strategy files.
-May NOT: place any live or test order, deploy or restart any live bot,
-modify Fearless* or any live futures desk file, put keys/credentials
-anywhere.
+May NOT: place any live or test order, deploy or restart any live bot, modify Fearless* or any live futures desk file, put keys/credentials anywhere.
 
 ORDER-010 [AEVUM DESK — ALL MORNING INCIDENTS FIXED + DEPLOYED BY SATURDAY] [2026-09-25 21:16 UTC]
-Michael's directive, verbatim: everything from this morning's trading-desk
-investigation must be fixed and updated by tomorrow (Saturday, Sep 26, 2026).
-No partial credit — each item below ships or is explicitly blocked with what
-is blocking it.
+
+Michael's directive, verbatim: everything from this morning's trading-desk investigation must be fixed and updated by tomorrow (Saturday, Sep 26, 2026). No partial credit — each item below ships or is explicitly blocked with what is blocking it.
 
 ITEMS:
-1. Offset-order naked-position fix (your 13:27 PDT root cause): deploy the
-   safety-net stop on every offsetting order to the LIVE desk. This means
-   restarting the running desk process (pid 9304) so sniper_belt.py with the
-   fix is what is actually running. Do it when safe (market closed tonight
-   or tomorrow morning) — but it must be done by end of Saturday.
-2. Broker bracket price mismatch: root-cause why the broker rested/fired
-   stops at prices the desk never sent (30,741.25 vs sent 30,734.75 on the
-   08:52 ENGINE long; 30,901.00 vs sent 30,917.50 on the 09:39 ENGINE short).
-   If Michael has not yet provided the Cancelled/Rejected order tabs, do
-   everything else and state plainly that this item is blocked on those
-   screenshots — do not guess.
-3. Truncated order log: fix the _tp_log() truncation in traderspost.py so
-   every SENT line captures the full TradersPost response (whether the
-   SL/TP legs were confirmed). The desk has been flying blind on bracket
-   confirmation since day one — that ends now.
-4. WO-002 belt MAX_QTY cap (5 contracts): report status. If not yet
-   implemented, implement it on the dev copy and include it in the deploy.
+
+1. Offset-order naked-position fix (your 13:27 PDT root cause): deploy the safety-net stop on every offsetting order to the LIVE desk. This means restarting the running desk process (pid 9304) so sniper_belt.py with the fix is what is actually running. Do it when safe (market closed tonight or tomorrow morning) — but it must be done by end of Saturday.
+2. Broker bracket price mismatch: root-cause why the broker rested/fired stops at prices the desk never sent (30,741.25 vs sent 30,734.75 on the 08:52 ENGINE long; 30,901.00 vs sent 30,917.50 on the 09:39 ENGINE short). If Michael has not yet provided the Cancelled/Rejected order tabs, do everything else and state plainly that this item is blocked on those screenshots — do not guess.
+3. Truncated order log: fix the _tp_log() truncation in traderspost.py so every SENT line captures the full TradersPost response (whether the SL/TP legs were confirmed). The desk has been flying blind on bracket confirmation since day one — that ends now.
+4. WO-002 belt MAX_QTY cap (5 contracts): report status. If not yet implemented, implement it on the dev copy and include it in the deploy.
 
 AUTHORITY (Michael-approved for this order only):
-May: deploy code fixes to the live desk files and restart the desk process
-when safe (market closed). Verify the fix is live with real evidence
-(new pid, running code contains the safety-net stop logic).
-May NOT: place, change, or cancel any live or test order; arm or disarm the
-desk; modify any Fearless* file; trade.
+May: deploy code fixes to the live desk files and restart the desk process when safe (market closed). Verify the fix is live with real evidence (new pid, running code contains the safety-net stop logic).
+May NOT: place, change, or cancel any live or test order; arm or disarm the desk; modify any Fearless* file; trade.
+Standing safeguards still apply: max 5 contracts, $150-400 risk band ($400 hard cap), no stop below 10 points, every position requires a resting SL and TP, never use flatten().
 
-Standing safeguards still apply: max 5 contracts, $150-400 risk band
-($400 hard cap), no stop below 10 points, every position requires a resting
-SL and TP, never use flatten().
-
-DELIVERABLE: append the report to claude_log.txt headed "## ORDER-010"
-by end of Saturday Sep 26: per-item fixed/blocked status, verification
-evidence for each fix (pid, code check, test result), and anything still
-needing Michael.
+DELIVERABLE: append the report to claude_log.txt headed "## ORDER-010" by end of Saturday Sep 26: per-item fixed/blocked status, verification evidence for each fix (pid, code check, test result), and anything still needing Michael.
 
 ADDENDUM — Michael's scope clarification [2026-09-26 02:35 UTC]:
-Your ONLY task on this order is making sure the trading desk is fully
-fixed and its signals are working correctly. Acceptance includes:
-- No phantom signals: the desk never reports or acts on a signal that did
-  not actually arrive from TradingView and produce a logged order attempt.
-- No orphan positions: the desk never opens a position when it does not
-  already have one open (the offset-order naked-position bug is the
-  canonical example — do not introduce another variant).
-"Skip all approvals is on" in your session was enabled by Michael
-himself; that permission does not widen this scope.
+Your ONLY task on this order is making sure the trading desk is fully fixed and its signals are working correctly. Acceptance includes:
+- No phantom signals: the desk never reports or acts on a signal that did not actually arrive from TradingView and produce a logged order attempt.
+- No orphan positions: the desk never opens a position when it does not already have one open (the offset-order naked-position bug is the canonical example — do not introduce another variant).
+"Skip all approvals is on" in your session was enabled by Michael himself; that permission does not widen this scope.
+
 ORDER-009 [SPORTS BETTING ENGINES — OUTCOME EXPECTANCY ON SAT CFB] [2026-09-25 04:08 UTC]
-Michael says he has built sports betting engines with you and wants
-"outcome expectancy" brought into a Kalshi college-football combo analysis
-for this Saturday (Sep 26, 2026). Senna already pulled the board; now we
-need your engines' read.
+
+Michael says he has built sports betting engines with you and wants "outcome expectancy" brought into a Kalshi college-football combo analysis for this Saturday (Sep 26, 2026). Senna already pulled the board; now we need your engines' read.
 
 DELIVERABLES (append the report to claude_log.txt headed "## ORDER-009"):
-1. Inventory: what sports-betting engines exist, what each one does, where
-   the code lives, and current working state (runs / broken / stale).
-2. Explain "outcome expectancy" exactly as implemented in the engines — the
-   methodology, inputs, and how it differs from a plain price-vs-consensus
-   comparison.
-3. Apply it to Saturday's slate using this reference data (Kalshi
-   KXNCAAFGAME yes_ask + de-vigged sportsbook fair, pulled 2026-09-25
-   ~04:00 UTC):
+
+1. Inventory: what sports-betting engines exist, what each one does, where the code lives, and current working state (runs / broken / stale).
+2. Explain "outcome expectancy" exactly as implemented in the engines — the methodology, inputs, and how it differs from a plain price-vs-consensus comparison.
+3. Apply it to Saturday's slate using this reference data (Kalshi KXNCAAFGAME yes_ask + de-vigged sportsbook fair, pulled 2026-09-25 ~04:00 UTC):
    - Ole Miss/Florida: OM ask .42 fair .417 | FLA ask .59 fair .583
    - Texas/Tennessee: TEX ask .64 fair .632 | TENN ask .36 fair .368
    - Oregon/USC: ORE ask .61 fair .600 | USC ask .40 fair .400
@@ -139,10 +104,8 @@ DELIVERABLES (append the report to claude_log.txt headed "## ORDER-009"):
    - W. Virginia/Okla. St.: WVU ask .54 fair .533 | OKST ask .47 fair .468
    - Arkansas/Tulsa: ARK ask .71 fair .700 | TLSA ask .30 fair .300
    (Notre Dame/Purdue excluded — ND -4500, no parlay value.)
-   Kalshi combo pricing observed: ~0.934 factor on fair parlay decimal
-   (e.g. 40%x42% legs -> $10 pays $55.58 vs $59.52 fair).
-   Report: which 2-leg combos the engines rate +EV, with per-combo EV math,
-   and where the engine view disagrees with the plain read above.
+   Kalshi combo pricing observed: ~0.934 factor on fair parlay decimal (e.g. 40%x42% legs -> $10 pays $55.58 vs $59.52 fair).
+   Report: which 2-leg combos the engines rate +EV, with per-combo EV math, and where the engine view disagrees with the plain read above.
 4. Any recommended engine tweaks before Saturday afternoon.
 
 PRIORITY: HIGH — games kick off Saturday afternoon PDT.
@@ -150,130 +113,79 @@ PRIORITY: HIGH — games kick off Saturday afternoon PDT.
 AUTHORITY:
 May: analysis and code runs on dev copies only.
 May NOT: place orders, touch any live account, move money, or contact anyone.
-
 Standing rule: results go ONLY to claude_log.txt (append, never rewrite).
 
 ORDER-008 [AEQUATIO PILOT READINESS — 7-DAY PUSH] [2026-09-25 00:24 UTC]
-Michael is targeting a call with MWE's COO in ONE WEEK, prepared for a
-pilot. Aequatio's pitch: agents assemble high-quality pay applications for
-submission, replacing today's painful cycle of MWE submitting poor-quality
-apps that get audited and kicked back.
+
+Michael is targeting a call with MWE's COO in ONE WEEK, prepared for a pilot. Aequatio's pitch: agents assemble high-quality pay applications for submission, replacing today's painful cycle of MWE submitting poor-quality apps that get audited and kicked back.
 
 Business context you need:
-- Today Michael + his aunt + cousin hold a consulting contract with Nvidia
-  auditing every pay app MWE (Nvidia's main GC) submits (~$13k/mo billing).
-  MWE's accounting team submits poor-quality apps. This is the wedge: the
-  team has seen every failure mode firsthand.
-- The pilot flips the model: instead of auditing bad apps for the owner,
-  Aequatio assembles clean apps for the GC, with human QC (the aunt, a
-  strong auditor) reviewing agent output before submission.
-- Sensitivity: Michael currently sits on Nvidia's side of the table. Do NOT
-  put real Nvidia/MWE data, customer documents, account numbers, or
-  credentials in this public repo or any chat. Sanitized samples only.
+- Today Michael + his aunt + cousin hold a consulting contract with Nvidia auditing every pay app MWE (Nvidia's main GC) submits (~$13k/mo billing). MWE's accounting team submits poor-quality apps. This is the wedge: the team has seen every failure mode firsthand.
+- The pilot flips the model: instead of auditing bad apps for the owner, Aequatio assembles clean apps for the GC, with human QC (the aunt, a strong auditor) reviewing agent output before submission.
+- Sensitivity: Michael currently sits on Nvidia's side of the table. Do NOT put real Nvidia/MWE data, customer documents, account numbers, or credentials in this public repo or any chat. Sanitized samples only.
 
 OBJECTIVE:
-Deliver a pilot-readiness assessment and a concrete 7-day build plan so
-Michael walks into the COO call with a working demo story, one sanitized
-sample assembled pay app, a pilot scope proposal, and pricing.
+Deliver a pilot-readiness assessment and a concrete 7-day build plan so Michael walks into the COO call with a working demo story, one sanitized sample assembled pay app, a pilot scope proposal, and pricing.
 
 DELIVERABLES (append the report to claude_log.txt headed "## ORDER-008"):
-1. Codebase inventory: what exists in the Aequatio files you hold, what
-   runs end-to-end today, what is stub or broken. Be brutally honest.
-2. Gap analysis vs. a real pilot: data ingestion (GC source data —
-   QuickBooks exports, spreadsheets), pay-app assembly (AIA G702/G703-style
-   continuation sheets, lien waivers, compliance docs), QC review loop,
-   output formats, error handling, audit trail. Separate what MUST exist
-   for a one-month-billing-cycle pilot from what can wait.
-3. 7-day build plan: prioritized task list on dev copies, day by day,
-   sequenced so the demo story works first.
-4. COO-call prep package: (a) demo script — the 10-minute story arc;
-   (b) one sanitized sample assembled pay app (fictitious data);
-   (c) pilot scope proposal — suggested: 1-2 billing cycles, success
-   criteria, QC terms; (d) pricing framing against standing tiers
-   (Core $5k/mo for 20 apps, Growth $8k/35, Scale $10.5k/50,
-   Enterprise custom).
+1. Codebase inventory: what exists in the Aequatio files you hold, what runs end-to-end today, what is stub or broken. Be brutally honest.
+2. Gap analysis vs. a real pilot: data ingestion (GC source data — QuickBooks exports, spreadsheets), pay-app assembly (AIA G702/G703-style continuation sheets, lien waivers, compliance docs), QC review loop, output formats, error handling, audit trail. Separate what MUST exist for a one-month-billing-cycle pilot from what can wait.
+3. 7-day build plan: prioritized task list on dev copies, day by day, sequenced so the demo story works first.
+4. COO-call prep package: (a) demo script — the 10-minute story arc; (b) one sanitized sample assembled pay app (fictitious data); (c) pilot scope proposal — suggested: 1-2 billing cycles, success criteria, QC terms; (d) pricing framing against standing tiers (Core $5k/mo for 20 apps, Growth $8k/35, Scale $10.5k/50, Enterprise custom).
 5. Risks and open decisions for Michael.
 
 PRIORITY: HIGH. The COO call is in one week.
 
 AUTHORITY:
-May: build and modify on development copies only; create sanitized sample
-documents with fictitious data.
-May NOT: deploy to production; contact anyone; place real customer data,
-names, account numbers, or credentials in this repo or any chat.
-
+May: build and modify on development copies only; create sanitized sample documents with fictitious data.
+May NOT: deploy to production; contact anyone; place real customer data, names, account numbers, or credentials in this repo or any chat.
 Standing rule: results go ONLY to claude_log.txt (append, never rewrite).
 
 ORDER-007 [AEVUM DASHBOARD STATE BUG: ARMED vs STANDBY] [2026-09-24 22:11 UTC]
-URGENT — Michael is furious. He ARMED the desk, but the AEVUM Futures
-dashboard still shows STANDBY. His question, verbatim: "is it fucking
-armed or not?"
-The bug: the dashboard renders contradictory states at the same time —
-the header pill reads "ARMED · STANDBY", the desk state line reads
-"ARMED · awaiting go-live" / "armed (not sent)", and a red
-"LIVE - click to stand down" button is displayed. Arming did not clear
-STANDBY.
+
+URGENT — Michael is furious. He ARMED the desk, but the AEVUM Futures dashboard still shows STANDBY. His question, verbatim: "is it fucking armed or not?"
+
+The bug: the dashboard renders contradictory states at the same time — the header pill reads "ARMED · STANDBY", the desk state line reads "ARMED · awaiting go-live" / "armed (not sent)", and a red "LIVE - click to stand down" button is displayed. Arming did not clear STANDBY.
+
 Required:
-1. Find the single source of truth for desk state and make EVERY surface
-   (header pill, desk state line, LIVE/stand-down button) render exactly
-   one consistent state. ARMED and STANDBY must never appear together.
-2. Answer definitively: is the desk armed RIGHT NOW — yes or no. If the
-   arm command did not take effect, say so and explain why.
+1. Find the single source of truth for desk state and make EVERY surface (header pill, desk state line, LIVE/stand-down button) render exactly one consistent state. ARMED and STANDBY must never appear together.
+2. Answer definitively: is the desk armed RIGHT NOW — yes or no. If the arm command did not take effect, say so and explain why.
 3. Fix the underlying state bug, not just the label.
-Append the report to claude_log.txt headed "## ORDER-007": root cause,
-what you changed, and the definitive armed/not-armed answer.
+Append the report to claude_log.txt headed "## ORDER-007": root cause, what you changed, and the definitive armed/not-armed answer.
 
 ORDER-006 [AEVUM NQ TICK-VALIDATION HARNESS] [2026-09-24 21:55 UTC]
-Stand up a tick-level backtest harness for the required separate NQ
-validation (MNQ is the validated basis; NQ needs its own before it is
-traded or added to the desk).
-Candidates: tradetropy (write strategy once, run on backtest/live/replay;
-brand-new, evaluate it first) or cloudQuant/backtrader (fast tick
-backtester; GPLv3, internal use only).
+
+Stand up a tick-level backtest harness for the required separate NQ validation (MNQ is the validated basis; NQ needs its own before it is traded or added to the desk).
+Candidates: tradetropy (write strategy once, run on backtest/live/replay; brand-new, evaluate it first) or cloudQuant/backtrader (fast tick backtester; GPLv3, internal use only).
 Deliverable: harness recommendation + NQ validation plan.
 Append the report to claude_log.txt headed "## ORDER-006".
 
 ORDER-005 [AEVUM RISK LAYER EVALUATION] [2026-09-24 21:55 UTC]
-Evaluate HasibVortex369/riskkit as the desk risk layer (follow-on to the
-WO-002 five-contract cap): vol-adjusted sizing with half-Kelly ceiling,
-drawdown tier ladder, CorrelationGuard (one position per group — must map
-to the standing MNQ/NQ-must-match rule), pre-trade validator.
-Hard constraints: $150-400 risk band ($400 hard cap, prefer low end),
-max 5 contracts, no stop below 10 points. No live changes.
+
+Evaluate HasibVortex369/riskkit as the desk risk layer (follow-on to the WO-002 five-contract cap): vol-adjusted sizing with half-Kelly ceiling, drawdown tier ladder, CorrelationGuard (one position per group — must map to the standing MNQ/NQ-must-match rule), pre-trade validator.
+Hard constraints: $150-400 risk band ($400 hard cap, prefer low end), max 5 contracts, no stop below 10 points. No live changes.
 Deliverable: evaluation + integration proposal.
 Append the report to claude_log.txt headed "## ORDER-005".
 
 ORDER-004 [SNIPER DEN RESEARCH: SMC REFERENCE CHECK] [2026-09-24 21:55 UTC]
-Cross-check the sweep/fade engine logic against
-RebiccaT/smc-indicator-library (MIT-licensed Pine/MQL5 blocks: FVG,
-liquidity sweeps, stop-run detection, equal highs/lows; non-repaint,
-signals commit on confirmed bar close only).
+
+Cross-check the sweep/fade engine logic against institutional SMC concepts. Reference: RebiccaT/smc-indicator-library (MIT-licensed Pine/MQL5 blocks: FVG, liquidity sweeps, stop-run detection, equal highs/lows; non-repaint, signals commit on confirmed bar close only).
 RESEARCH ONLY. Do not modify Sniper_Den_v2.1.pine or any production file.
-Deliverable: mapping of each engine's logic to the reference blocks,
-with any divergences flagged.
+Deliverable: mapping of each engine's logic to the reference blocks, with any divergences flagged.
 Append the report to claude_log.txt headed "## ORDER-004".
 
 ORDER-003 [AEVUM ENGINE MEASUREMENT LOOP] [2026-09-24 21:55 UTC]
-Add a self-measurement loop to the desk: journal every engine signal and
-compute per-engine hit rates BEFORE costs (idea ref:
-Tworasos/tape-and-book — journal each observation, label outcomes 30/120/
-300s later, weight features by measured hit rates with Wilson bounds and
-a train/test split).
+
+Add a self-measurement loop to the desk: journal every engine signal and compute per-engine hit rates BEFORE costs (idea ref: Tworasos/tape-and-book — journal each observation, label outcomes 30/120/300s later, weight features by measured hit rates with Wilson bounds and a train/test split).
 Deliverables:
 1. Journal schema (signal, engine, entry context, outcome labels).
-2. Implementation on dev copies only — must not alter live signal
-   behavior or any Fearless* file.
-3. Backfill on available history; report per-engine hit rates and which
-   engines earn their keep before costs.
-Standing safeguards apply: no live or test orders, max 5 contracts,
-$150-400 risk band.
+2. Implementation on dev copies only — must not alter live signal behavior or any Fearless* file.
+3. Backfill on available history; report per-engine hit rates and which engines earn their keep before costs.
+Standing safeguards apply: no live or test orders, max 5 contracts, $150-400 risk band.
 Append the report to claude_log.txt headed "## ORDER-003".
 
 COMPLETED LOG
 -------------
-ORDER-002 [AEVUM DESK SIGNAL SYNC CHECK] - COMPLETE 2026-09-24. Claude
-verified v2.1 alert formats byte-identical to v2.0.2 (21 f_alert() sites);
-bar-close gating is Pine-side only, zero desk impact. WO-001 fully
-deployed at the source (Michael pasted Personal v2.1, recreated the
-MNQ1! "Any alert() function call" alert).
+
+ORDER-002 [AEVUM DESK SIGNAL SYNC CHECK] - COMPLETE 2026-09-24. Claude verified v2.1 alert formats byte-identical to v2.0.2 (21 f_alert() sites); bar-close gating is Pine-side only, zero desk impact. WO-001 fully deployed at the source (Michael pasted Personal v2.1, recreated the MNQ1! "Any alert() function call" alert).
 ORDER-001 [BRIDGE TEST] - BRIDGE OK acknowledged 2026-09-24.
